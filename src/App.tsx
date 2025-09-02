@@ -1,5 +1,11 @@
+import Game from "./pages/game/Game"
+
 function App() {
-  return <></>
+  return (
+    <>
+      <Game />
+    </>
+  )
 }
 
 export default App
