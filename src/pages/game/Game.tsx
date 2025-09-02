@@ -5,7 +5,7 @@ import { Choice } from "../../enums/Choice"
 
 export default function Game() {
   const [playerChoice, setPlayerChoice] = useState<Choice>(Choice.NOTHING)
-  const [cpuChoice, setCpuChoice] = useState<Choice>(Choice.NOTHING)
+  const [cpuChoice, setCpuChoice] = useState<Choice>(Choice.LIZARD)
   const [result, setResult] = useState<Result>(Result.NOTHING)
   const [showReset, setShowReset] = useState<boolean>(false)
   const [played, setPlayed] = useState<boolean>(false)
@@ -31,33 +31,24 @@ export default function Game() {
   }
 
   useEffect(() => {
-    if (playerChoice === Choice.NOTHING) {
-      setCpuChoice(Choice.NOTHING)
-      setResult(Result.NOTHING)
-      setShowReset(false)
-      setPlayed(false)
-    } else {
-      const test = Math.floor(Math.random() * (Object.entries(Choice).length / 2 - 1) + 1)
-      setCpuChoice(test)
-      console.log(test)
-      console.log(cpuChoice)
-      getResult()
+    if (played) {
+      setCpuChoice(Math.floor(Math.random() * (Object.entries(Choice).length / 2 - 1) + 1))
+      // getResult()
       setShowReset(true)
     }
-  }, [playerChoice])
+  }, [played])
+
+  useEffect(() => {
+    getResult()
+  }, [cpuChoice])
 
   function getResult() {
-    // console.log(playerChoice)
-    // console.log(cpuChoice)
     if (playerChoice === cpuChoice) {
       setResult(Result.DRAW)
-      console.log("draw")
     } else if (defeatTable[playerChoice].defeats.includes(cpuChoice)) {
       setResult(Result.WIN)
-      console.log("win")
     } else {
       setResult(Result.LOSE)
-      console.log("lose")
     }
   }
 
@@ -69,10 +60,15 @@ export default function Game() {
 
         {playerChoice !== Choice.NOTHING && (
           <>
-            <div>
-              <p>You choose: {Object.values(Choice)[Object.keys(Choice).indexOf(playerChoice.toFixed())]}</p>
-              <p>CPU choose: {Object.values(Choice)[Object.keys(Choice).indexOf(cpuChoice.toFixed())]}</p>
-              <p>Result: {result}</p>
+            <div className="flex flex-col justify-center items-center">
+              <p>YOU: {Object.values(Choice)[Object.keys(Choice).indexOf(playerChoice.toFixed())]}</p>
+              <p>CPU: {Object.values(Choice)[Object.keys(Choice).indexOf(cpuChoice.toFixed())]}</p>
+              <p
+                className={`${
+                  result === Result.WIN ? "text-green-800" : result === Result.DRAW ? "text-yellow-800" : "text-red-800"
+                } font-bold`}>
+                {result}
+              </p>
             </div>
           </>
         )}
@@ -92,6 +88,7 @@ export default function Game() {
                 setPlayerChoice(Choice.NOTHING)
                 setCpuChoice(Choice.NOTHING)
                 setResult(Result.NOTHING)
+                setShowReset(false)
                 setPlayed(false)
               }}>
               Restart Game
