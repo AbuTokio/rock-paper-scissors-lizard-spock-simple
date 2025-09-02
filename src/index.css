@@ -1,0 +1,39 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg-primary: hsl(214, 47%, 23%);
+  --color-bg-secondary: hsl(237, 49%, 15%);
+  --color-scissors-start: hsl(40, 84%, 53%);
+  --color-scissors-end: hsl(39, 89%, 49%);
+  --color-scissors-shadow: hsla(39, 89%, 49%, 0.7);
+  --color-paper-start: hsl(230, 89%, 65%);
+  --color-paper-end: hsl(230, 89%, 62%);
+  --color-paper-shadow: hsla(230, 89%, 62%, 0.7);
+  --color-rock-start: hsl(349, 70%, 56%);
+  --color-rock-end: hsl(349, 71%, 52%);
+  --color-rock-shadow: hsla(349, 71%, 52%, 0.7);
+  --color-lizard-start: hsl(261, 72%, 63%);
+  --color-lizard-end: hsl(261, 73%, 60%);
+  --color-lizard-shadow: hsla(261, 73%, 60%, 0.7);
+  --color-spock-start: hsl(189, 58%, 57%);
+  --color-spock-end: hsl(189, 59%, 53%);
+  --color-spock-shadow: hsla(189, 59%, 53%, 0.7);
+
+  --color-accent: #fff;
+  --color-win-hightlight-1: rgb(255, 255, 255, 0.04);
+  --color-win-hightlight-2: rgb(255, 255, 255, 0.03);
+  --color-win-hightlight-3: rgb(255, 255, 255, 0.02);
+  --color-dark-text: hsl(229, 25%, 31%);
+  --color-score-text: hsl(229, 64%, 46%);
+  --color-header-outline: hsl(217, 16%, 45%);
+  --color-background: radial-gradient(at center top, var(--color-bg-primary), var(--color-bg-secondary));
+
+  --scoreboard-width: clamp(310px, 100%, 900px);
+  --game-width: clamp(280px, 90%, 500px);
+  --btn-size: clamp(100px, 26vw, 175px);
+  --btn-shadow-size: calc(0.06 * var(--btn-size));
+  --btn-border-width: calc(0.12 * var(--btn-size));
+  --game-result-width: clamp(100px, 100%, 600px);
+  --rules-modal-height: clamp(600px, 90%, 800px);
+  --rules-modal-width: clamp(310px, 90%, 800px);
+}
